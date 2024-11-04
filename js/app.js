@@ -28,6 +28,15 @@ function limpiarHTML(padre){
 }
 
 let favoritos = []
+let contadorNotifacion
+
+const categorias = document.querySelector('#categorias')
+const cuerpoRecetas = document.querySelector('#resultado')
+const modal = document.querySelector('#modal')
+const modalBody = document.querySelector('#modal .modal-content')
+const botonAleatorio = document.querySelector('#recetaAleatoria')
+const notifa = document.querySelector('#toast')
+
 function cargarFavoritos(){
     let conexion = obtenerElementos()
     conexion.addEventListener('success', () => {
@@ -39,13 +48,6 @@ function cargarFavoritos(){
     })
     console.log(favoritos)
 }
-
-const categorias = document.querySelector('#categorias')
-const cuerpoRecetas = document.querySelector('#resultado')
-const modal = document.querySelector('#modal')
-const modalBody = document.querySelector('#modal .modal-content')
-const botonAleatorio = document.querySelector('#recetaAleatoria')
-const notifa = document.querySelector('#toast')
 
 function cargarCategorias (){
     const url = 'https://www.themealdb.com/api/json/v1/1/categories.php'
@@ -167,8 +169,6 @@ function mostrarRecetas(datos){
 
     })
 }
-
-let contadorNotifacion
 
 function notificacion(mensaje){
 
