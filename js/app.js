@@ -45,6 +45,7 @@ const cuerpoRecetas = document.querySelector('#resultado')
 const modal = document.querySelector('#modal')
 const modalBody = document.querySelector('#modal .modal-content')
 const botonAleatorio = document.querySelector('#recetaAleatoria')
+const notifa = document.querySelector('#toast')
 
 function cargarCategorias (){
     const url = 'https://www.themealdb.com/api/json/v1/1/categories.php'
@@ -163,7 +164,33 @@ function mostrarRecetas(datos){
         divCardBody.appendChild(a)
 
         cuerpoRecetas.appendChild(div)
+
     })
+}
+
+let contadorNotifacion
+
+function notificacion(mensaje){
+
+    const boton = notifa.querySelector('.btn-close')
+    const body = notifa.querySelector('.toast-body')
+
+    notifa.classList.add('show')
+
+    boton.addEventListener('click', () => {
+        notifa.classList.remove('show')
+    })
+
+    if (contadorNotifacion){
+        clearTimeout(contadorNotifacion)
+    }
+
+    contadorNotifacion = setTimeout(() => {
+        notifa.classList.remove('show')
+    }, 3000)
+
+    body.textContent = mensaje
+
 }
 
 function mostrarReceta(evento){
@@ -324,6 +351,7 @@ function mostrarModal(datos){
             botonDinamico.classList.remove('btn-danger')
             botonDinamico.classList.add('btn-success')
             favoritos = favoritos.filter(favorito => favorito.id !== idMeal)
+            notificacion('Receta eliminada de Favoritos')
         } else {
             agregarFavoritos(meals[0], ingredientes, medidas)
             botonDinamico.textContent = 'Borrar de Favoritos'
@@ -348,5 +376,6 @@ function agregarFavoritos(receta, ingredientes, medidas){
         medidas: medidas
     }
     agregarElemento(objetoReceta)
+    notificacion('Receta agregada a Favoritos')
     favoritos.push(objetoReceta)
 }
