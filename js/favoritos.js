@@ -6,16 +6,42 @@ function onLoadWindows(){
 }
 window.addEventListener('load', onLoadWindows)
 
+let favoritos = []
+let contadorNotifacion
+
 const listaFavoritos = document.querySelector('#resultado')
 const modal = document.querySelector('#modal')
 const modalBody = document.querySelector('#modal .modal-content')
 const buscador = document.querySelector('#buscador')
-let favoritos = []
+const notifa = document.querySelector('.toast')
 
 function limpiarHTML(padre){
     while(padre.firstChild){
         padre.removeChild(padre.firstChild)
     }
+}
+
+function notificacion(mensaje){
+
+    const boton = notifa.querySelector('.btn-close')
+    const body = notifa.querySelector('.toast-body')
+
+    notifa.classList.add('show')
+
+    boton.addEventListener('click', () => {
+        notifa.classList.remove('show')
+    })
+
+    if (contadorNotifacion){
+        clearTimeout(contadorNotifacion)
+    }
+
+    contadorNotifacion = setTimeout(() => {
+        notifa.classList.remove('show')
+    }, 3000)
+
+    body.textContent = mensaje
+
 }
 
 function mostrarFavoritos(){
@@ -103,6 +129,7 @@ function mostrarFavorito(favorito){
             listaFavoritos.removeChild(div)
             const index = favoritos.indexOf(favorito)
             favoritos.splice(index, 1)
+            notificacion('Receta eliminada de favoritos')
         })
     }
 
@@ -199,8 +226,6 @@ function mostrarModal(datos){
             modal.style.display = 'none'
         }
     })
-
-    // Boton cerrar y AgregarFavoritos en Footer
 
     const buttonCerrar = document.createElement('button')
     buttonCerrar.classList.add('btn', 'btn-secondary', 'col')
