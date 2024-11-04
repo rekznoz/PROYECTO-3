@@ -13,7 +13,7 @@ const listaFavoritos = document.querySelector('#resultado')
 const modal = document.querySelector('#modal')
 const modalBody = document.querySelector('#modal .modal-content')
 const buscador = document.querySelector('#buscador')
-const notifa = document.querySelector('.toast')
+const notifa = document.querySelector('#toast')
 
 function limpiarHTML(padre){
     while(padre.firstChild){
@@ -82,7 +82,7 @@ function mostrarFavorito(favorito){
     const {id, nombre, imagen, categoria} = favorito
 
     const div = document.createElement('div')
-    div.classList.add('col-md-4')
+    div.classList.add('col-md-4', 'mb-4')
 
     const divCard = document.createElement('div')
     divCard.classList.add('card')

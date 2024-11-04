@@ -27,7 +27,7 @@ function limpiarHTML(padre){
     }
 }
 
-let favoritos = []
+let listaFavoritos = []
 let contadorNotifacion
 
 const categorias = document.querySelector('#categorias')
@@ -42,11 +42,11 @@ function cargarFavoritos(){
     conexion.addEventListener('success', () => {
         let cursor = conexion.result
         if(cursor){
-            favoritos.push(cursor.value)
+            listaFavoritos.push(cursor.value)
             cursor.continue()
         }
     })
-    console.log(favoritos)
+    console.log(listaFavoritos)
 }
 
 function cargarCategorias (){
@@ -138,7 +138,7 @@ function mostrarRecetas(datos){
         div.classList.add('col-md-4', 'col-sm-6', 'col-12')
 
         const divCard = document.createElement('div')
-        divCard.classList.add('card', 'mb-4', 'shadow-sm', 'rounded')
+        divCard.classList.add('card', 'mb-4', 'shadow-sm', 'rounded', 'drag')
         div.appendChild(divCard)
 
         const img = document.createElement('img')
@@ -336,7 +336,7 @@ function mostrarModal(datos){
     const botonDinamico = document.createElement('button')
     botonDinamico.classList.add('btn', 'col')
 
-    if (favoritos.some(favorito => favorito.id === idMeal)){
+    if (listaFavoritos.some(favorito => favorito.id === idMeal)){
         botonDinamico.textContent = 'Borrar de Favoritos'
         botonDinamico.classList.add('btn-danger')
     } else {
@@ -345,12 +345,12 @@ function mostrarModal(datos){
     }
 
     botonDinamico.addEventListener('click', () => {
-        if (favoritos.some(favorito => favorito.id === idMeal)){
+        if (listaFavoritos.some(favorito => favorito.id === idMeal)){
             eliminarElemento(idMeal)
             botonDinamico.textContent = 'Agregar a Favoritos'
             botonDinamico.classList.remove('btn-danger')
             botonDinamico.classList.add('btn-success')
-            favoritos = favoritos.filter(favorito => favorito.id !== idMeal)
+            listaFavoritos = listaFavoritos.filter(favorito => favorito.id !== idMeal)
             notificacion('Receta eliminada de Favoritos')
         } else {
             agregarFavoritos(meals[0], ingredientes, medidas)
@@ -377,5 +377,5 @@ function agregarFavoritos(receta, ingredientes, medidas){
     }
     agregarElemento(objetoReceta)
     notificacion('Receta agregada a Favoritos')
-    favoritos.push(objetoReceta)
+    listaFavoritos.push(objetoReceta)
 }
