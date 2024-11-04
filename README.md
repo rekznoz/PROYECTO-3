@@ -4,6 +4,8 @@ La permite al usuario almacenar las recetas seleccionadas en la cache del navega
 
 ![Imagen de la interfaz de usuario](./img/fav1.png)
 
+A la hora de guardar la receta, se guarda toda la informacion de la misma, para a la hora de ver los favoritos no sea dependiente de la API ni de internet.
+
 https://github.com/rekznoz/PROYECTO-3/blob/4c4e5bd5d9da1a8616888ca84ca12a49fb6ec37f/js/app.js#L367-L381
 
 Cuando se agregue una receta a favoritos se mostrara un mensaje de confirmacion en la parte superior de la pantalla.
@@ -28,9 +30,15 @@ El buscador no solo permite buscar por palabras si no tambien por caracteres que
 
 ![Imagen de la interfaz de usuario](./img/buscador2.png)
 
+En caso de que se deje el cuadro en blanco se mostraran todas las recetas guardadas y si no existe ninguna con ese nombre, pues no se mostrara nada.
+
+https://github.com/rekznoz/PROYECTO-3/blob/4c4e5bd5d9da1a8616888ca84ca12a49fb6ec37f/js/favoritos.js#L60-L78
+
 ## Seleccionador de Recetas aleatorias
 
 Si el usuario no sabe que elegir o quiere lanzarse a la aventura de probar algo diferente, esta la opcion de seleccionar una receta aleatoria, hay dos formas de seleccionarla:
+
+https://github.com/rekznoz/PROYECTO-3/blob/4c4e5bd5d9da1a8616888ca84ca12a49fb6ec37f/js/app.js#L95-L130
 
 ### - Seleccionador de recetas aleatorias por api
 
@@ -42,8 +50,9 @@ Cuando pulse el boton de `Receta Aleatoria` se mostrara una receta aleatoria en 
 
 ![Imagen de la interfaz de usuario](./img/random2.png)
 
-### - Selecionador de recetas aleatorias por categoria seleccionada
+https://github.com/rekznoz/PROYECTO-3/blob/4c4e5bd5d9da1a8616888ca84ca12a49fb6ec37f/js/app.js#L96-L105
 
+### - Selecionador de recetas aleatorias por categoria seleccionada
 
 Si el usuario desea una aleatoria de una categoria concreta se puede seleccionar la categoria y usar la opcion para selecciiar una receta aleatoria de esa categoria.
 
@@ -52,4 +61,6 @@ Si el usuario desea una aleatoria de una categoria concreta se puede seleccionar
 Cuando se pulse el boton de `Receta Aleatoria de xxxxx` se mostrara una receta aleatoria de la categoria seleccionada en el modal.
 
 ![Imagen de la interfaz de usuario](./img/random4.png)
+
+https://github.com/rekznoz/PROYECTO-3/blob/4c4e5bd5d9da1a8616888ca84ca12a49fb6ec37f/js/app.js#L107-L126
 
